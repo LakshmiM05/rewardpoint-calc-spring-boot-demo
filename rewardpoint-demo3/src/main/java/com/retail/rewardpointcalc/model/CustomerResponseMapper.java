@@ -29,10 +29,11 @@ public class CustomerResponseMapper {
     
     public static List<TransactionResponse> mapToTransactionResList(List<com.retail.rewardpointcalc.entity.Transaction> transactionList,List<TransactionResponse> listTransResp) {
     	 // Numbers.forEach((n) -> System.out.println(n)); 
+    	if (transactionList!=null) {
     	  transactionList.forEach(transaction -> {    		  
     		 
     		  listTransResp.add(TransactionResponseMapper.mapToTransactionResponse(transaction,new TransactionResponse()));
-    	  });
+    	  });}
     	//TransactionResponseMapper.mapToTransactionResponse(customer.getTransActionList().get(0), new TransactionResponse());
     	return listTransResp;
     }

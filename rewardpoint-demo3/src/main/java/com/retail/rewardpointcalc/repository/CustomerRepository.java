@@ -49,11 +49,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 		public Optional<Customer> find(@Param("customer_Id") Integer customer_Id);*/
 	    
 	    
-	    @Query(value = "SELECT customer.customer_Id,customer.address,customer.created_at, customer.customer_Name,customer.EmailID,customer.phone,customer.created_by,customer.updated_at,customer.updated_by,Transaction.Trans_Id, "
+	   /* @Query(value = "SELECT customer.customer_Id,customer.address,customer.created_at, customer.customer_Name,customer.EmailID,customer.phone,customer.created_by,customer.updated_at,customer.updated_by,Transaction.Trans_Id, "
 				+" Transaction.Trans_Date,Transaction.Trans_Amt,Transaction.Reward_Points "
 				+ "FROM customer INNER JOIN Transaction "
 				+ "ON customer.customer_Id = Transaction.customer_Id and customer.customer_Id =:customer_Id and Transaction.trans_Date > date_sub(now(),Interval 3 month) ", nativeQuery = true)
-		public Optional<Customer> find(@Param("customer_Id") Integer customer_Id);
+		public Optional<Customer> find(@Param("customer_Id") Integer customer_Id);*/
 	    
 	    
 	    public Optional<Customer> findByCustomerId(Integer customerid);   

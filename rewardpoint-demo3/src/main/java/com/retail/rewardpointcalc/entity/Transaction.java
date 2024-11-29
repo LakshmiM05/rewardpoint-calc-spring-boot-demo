@@ -43,4 +43,6 @@ public class Transaction {
 	private Date transDate;
 	@Column(name="customer_Id")
 	private int customerId;
+	
+	
 }
