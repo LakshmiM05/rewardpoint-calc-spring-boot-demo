@@ -2,10 +2,15 @@ package com.retail.rewardpointcalc.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.*;
 import java.time.Period;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -98,77 +103,95 @@ public class CustomerController {
 	
 	@GetMapping("/customer/{customerId}/rewardpointsum")
 	public ResponseEntity<CustomerResponse> getCustomerWith3MonthPoint(@PathVariable int customerId) {
-		totalRewardPoints=0;
-		 rewardpointsum3month=0;
-	Optional<Customer> customer = repository.find(customerId);
-	CustomerResponse customerResponse =new CustomerResponse();
-	if(customer.isPresent()){
-	customerResponse = CustomerResponseMapper.mapToCustomerResponse(customer.get(), customerResponse);
-	
-	customerResponse.getTransList().forEach(transaction -> {
-		totalRewardPoints =calculateTotRewardPoints(transaction.getRewardpoints());
-	});
-	
-	 LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));
-	 System.out.println("threeMonthsAgo:: "+threeMonthsAgo);
+		totalRewardPoints = 0;
+		rewardpointsum3month = 0;
+		Optional<Customer> customer = repository.find(customerId);
+		CustomerResponse customerResponse = new CustomerResponse();
+		if (customer.isPresent()) {
+			customerResponse = CustomerResponseMapper.mapToCustomerResponse(customer.get(), customerResponse);
 
-	/* int rewardpointsum3month= customerResponse.getTransList().stream()
-             .filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
-             .mapToInt(transaction -> transaction.getRewardpoints() ).sum(); */
-	 
-	/* int rewardpointsum3month=customerResponse.getTransList().stream()
-             .filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
-             .collect(Collectors.toList()).stream()
-             .mapToInt(transaction -> transaction.getRewardpoints() ).sum(); */
-	 
-	 //LocalDate startDate = LocalDate.of(new Date());
-	 //LocalDate endDate = startDate.minusYears(1);
+			customerResponse.getTransList().forEach(transaction -> {
+				totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
+			});
 
-	// System.out.println(startDate);
-	 //System.out.println(endDate);
-	 
-List<TransactionResponse> threemonthList =	customerResponse.getTransList().stream()
-             .filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
-             .collect(Collectors.toList());
-System.out.println("size:: " + threemonthList.size());
+			LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));		
 
+			List<TransactionResponse> threemonthList = customerResponse.getTransList().stream()
+					.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
+					.collect(Collectors.toList());
 
+			rewardpointsum3month = threemonthList.stream().mapToInt(trans -> trans.getRewardpoints()).sum();
+			customerResponse.setRewardpoints_3month(rewardpointsum3month);
+			customerResponse.setTotalRewardPoints(totalRewardPoints);
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			Map<Object, List<TransactionResponse>> monthwiseMap = customerResponse.getTransList().stream().collect(
+					Collectors.groupingBy(transaction -> YearMonth.parse(transaction.getTransDate().toString(), dtf)));
+			customerResponse.setMonthWiseRewardPoint(iterateUsingIteratorAndEntrySet(monthwiseMap));
+			return ResponseEntity.status(HttpStatus.OK).body(customerResponse);
+		} else {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(customerResponse);
+		}
+		/*
+		 * threemonthList.forEach(transaction -> { rewardpointsum3month
+		 * =calculateTotRewardPoints(transaction.getRewardpoints()); });
+		 */
 
-rewardpointsum3month=threemonthList.stream().mapToInt(trans->trans.getRewardpoints()).sum();
+// customerResponse.setR
 
+// collect(Collectors.toList());
 
 /*
- * threemonthList.forEach(transaction -> { rewardpointsum3month
+ * customerResponse.getTransList().forEach(transaction -> { totalRewardPoints
  * =calculateTotRewardPoints(transaction.getRewardpoints()); });
  */
-	 
-	 //customerResponse.setR
-  
-           //  collect(Collectors.toList());
-	 customerResponse.setRewardpoints_3month(rewardpointsum3month);
+
+// Map<Integer,List<Person>> personByAge =
+// people.stream().collect(Collectors.groupingBy(Person::getAge));
+// System.out.println("Person grouped by age in Java 8: " + personByAge);
+
+// LocalDate.parse(getTransDate()).getMonth();
+
+// montwiseRewardPointMap=iterateUsingIteratorAndEntrySet(monthwiseMap);
+/* int rewardpointsum3month= customerResponse.getTransList().stream()
+.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
+.mapToInt(transaction -> transaction.getRewardpoints() ).sum(); */
+
+/* int rewardpointsum3month=customerResponse.getTransList().stream()
+.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
+.collect(Collectors.toList()).stream()
+.mapToInt(transaction -> transaction.getRewardpoints() ).sum(); */
+
+//LocalDate startDate = LocalDate.of(new Date());
+//LocalDate endDate = startDate.minusYears(1);
+
+// System.out.println(startDate);
+//System.out.println(endDate);
+	//customerResponse.set
 	
-/*	customerResponse.getTransList().forEach(transaction -> {
-		totalRewardPoints =calculateTotRewardPoints(transaction.getRewardpoints());
-	}); */
+     // System.out.println(monthwiseMap.size());
 	
-	
-	customerResponse.setTotalRewardPoints(totalRewardPoints);
+	//rewardpointsum3month=monthwiseMap.mapToList(trans->trans.getRewardpoints()).sum();
+
+
+
 		//custResponse = buildCustomerResponse(customer);
-	return ResponseEntity.status(HttpStatus.OK).body(customerResponse);
-	}
-	else {
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(customerResponse);
-	}
+	
 	}
 	
-	public  LocalDate convert (java.util.Date date) {
-		
-		LocalDate ld = new java.sql.Date( date.getTime() ).toLocalDate();
-		
-	   /* return date.toInstant()
-	      .atZone(ZoneId.of("UTC"))
-	      .toLocalDate();*/
-		
+	Map<Object,Integer> iterateUsingIteratorAndEntrySet(Map<Object, List<TransactionResponse>> map) {
+	    int sum = 0;
+	    Map<Object,Integer> montwiseRewardPointMap = new HashMap<Object,Integer>();
+	    Iterator<Map.Entry<Object, List<TransactionResponse>>>  iterator = map.entrySet().iterator();
+	    while (iterator.hasNext()) {
+	        Map.Entry<Object,List<TransactionResponse>> list = iterator.next();
+	       // sum += pair.getValue();
+	        sum=list.getValue().stream().mapToInt(trans->trans.getRewardpoints()).sum();
+	        montwiseRewardPointMap.put(list.getKey(),sum);
+	    }
+	    return montwiseRewardPointMap;
+	}
+	public  LocalDate convert (java.util.Date date) {		
+		LocalDate ld = new java.sql.Date( date.getTime() ).toLocalDate();		
 		return ld;
 	}
 	

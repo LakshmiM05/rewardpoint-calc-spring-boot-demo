@@ -3,6 +3,7 @@ package com.retail.rewardpointcalc.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,4 +33,5 @@ public class CustomerResponse {
 	private List<TransactionResponse> transList=new ArrayList<TransactionResponse>(); 
 	private int totalRewardPoints;
     private int rewardpoints_3month;
+ 	 private Map<Object,Integer> monthWiseRewardPoint;
 }
