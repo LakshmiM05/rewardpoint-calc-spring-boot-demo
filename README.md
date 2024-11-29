@@ -15,3 +15,9 @@ Input Json to test in postman
 		"emailID":"email@gmail1.com",
 		"phone":134567928
 		}
+2.Url To get the customerdetail with transaction List and total rewardpoints for the given customerId
+ http://localhost:8080/customer/{customerId}/transactions
+ 3.Url To get the customerdetail with transaction List and total rewardpoints,sum of 3 month reward points and  monthwise reward point report for the given customerId
+  http://localhost:8080/customer/{customerId}/rewardpointsum
+4.Url To get the customerdetail with transaction List and rewardpoints(Monthly,3month,total) for all the customers
+http://localhost:8080/customer/allcustomers
