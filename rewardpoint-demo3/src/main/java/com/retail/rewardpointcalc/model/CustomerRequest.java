@@ -1,8 +1,6 @@
 package com.retail.rewardpointcalc.model;
 
-import java.sql.Date;
 
-import com.retail.rewardpointcalc.entity.Customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

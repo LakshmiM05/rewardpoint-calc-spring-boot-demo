@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,12 +41,7 @@ public class Customer {
 	
 	@OneToMany
 	@JoinColumn(name = "customer_id")
-	//@JoinColumn(name = "customer", referencedColumnName = "customer_Id")
-	@Builder.Default
-	
-	//@JoinColumn( referencedColumnName = "customer_Id")
-	// @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
-	//@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Builder.Default	
 	private List<Transaction> transActionList = new ArrayList<Transaction>();
 	
 	private Date  created_at;

@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,10 +25,8 @@ import lombok.Setter;
 @Builder
 public class Transaction {
 	
-	 //@ManyToOne
-	   // @JoinColumn(name = "customer_Id")
-	@ManyToOne
 	
+	@ManyToOne	
 	 @JoinColumn(name = "customer", referencedColumnName = "customer_Id")
 	private Customer customer;
 	@Id
