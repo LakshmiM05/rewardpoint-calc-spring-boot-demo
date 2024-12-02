@@ -1,6 +1,7 @@
 package com.retail.rewardpointcalc.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.retail.rewardpointcalc.entity.Customer;
 
@@ -16,24 +17,27 @@ public class CustomerResponseMapper {
 		customerResponse.setPhone(customer.getPhone());
 		customerResponse.setUpdated_at(customer.getUpdated_at());
 		customerResponse.setUpdated_by(customer.getUpdated_by());
+		
+		
 
 		customerResponse.setTransList(CustomerResponseMapper.mapToTransactionResList(customer.getTransActionList(),
-				customerResponse.getTransList()));
+				customerResponse.getTransList().get()));
 		return customerResponse;
 	}
 
-	public static List<TransactionResponse> mapToTransactionResList(
+	public static Optional<List<TransactionResponse>> mapToTransactionResList(
 			List<com.retail.rewardpointcalc.entity.Transaction> transactionList,
 			List<TransactionResponse> listTransResp) {
 
 		if (transactionList != null) {
-			transactionList.forEach(transaction -> {
+			transactionList.stream().forEach(transaction -> {
 				listTransResp.add(
+						
 						TransactionResponseMapper.mapToTransactionResponse(transaction, new TransactionResponse()));
 			});
 		}
 
-		return listTransResp;
+		return Optional.ofNullable(listTransResp);
 	}
 
 }

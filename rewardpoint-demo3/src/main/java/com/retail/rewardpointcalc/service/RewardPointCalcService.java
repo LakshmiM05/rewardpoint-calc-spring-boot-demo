@@ -12,8 +12,7 @@ import com.retail.rewardpointcalc.model.RewardPointResponse;
 public class RewardPointCalcService {
 
 	public int getCustomerRewardPoint(Integer transAmt) {
-
-		// int transAmt = rewardPointRequest.getTransActionAmt();
+		
 		Integer rewardPoint = 0;
 		Integer rewardPointBelowMax = 0;
 		Integer rewardPointAboveMax = 0;
@@ -30,10 +29,7 @@ public class RewardPointCalcService {
 			rewardPoint = rewardPointBelowMax + rewardPointAboveMax;
 		} else if (transAmt > minLimit) {
 			rewardPoint = calculateRewardPoint(transAmt - minLimit, 1);
-		}
-		/*
-		 * else if(transAmt ==minLimit) { rewardPoint = calculateRewardPoint(1,1); }
-		 */
+		}	
 
 		return rewardPoint;
 	}
@@ -44,20 +40,17 @@ public class RewardPointCalcService {
 	}
 
 	public RewardPointResponse buildRewardPointResponse(RewardPointRequest rewardPointRequest) {
-		// int totalvalue=0;
+		
 		RewardPointResponse rewardPointResponse = new RewardPointResponse();
 		rewardPointResponse.setCustomerId(rewardPointRequest.getCustomerId());
-		rewardPointResponse.setCustomerName(rewardPointRequest.getCustomerName());
-		// rewardPointResponse.setMobileNumber(rewardPointRequest.get);
+		rewardPointResponse.setCustomerName(rewardPointRequest.getCustomerName());		
 		rewardPointResponse.setMonthlyTotalRewardPoint(getCustomerRewardPoint(rewardPointRequest.getTransActionAmt()));
-
-		// For Multiple transactions
+		
 		List<Integer> rewardPointList = new ArrayList<Integer>();
 
 		rewardPointRequest.getTransActionAmtList().forEach(transAmtValue -> {
 			int rewardpointvalue = getCustomerRewardPoint(transAmtValue);
-			//System.out.println("RewardPoint value::  " + rewardpointvalue);
-			// calculateTotal(rewardpointvalue);
+			
 			rewardPointList.add(rewardpointvalue);
 		});
 

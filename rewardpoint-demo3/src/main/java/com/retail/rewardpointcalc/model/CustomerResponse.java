@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +31,9 @@ public class CustomerResponse {
 	private Date  updated_at; 
 	private String updated_by;
 	@Builder.Default
-	private List<TransactionResponse> transList=new ArrayList<TransactionResponse>(); 
+	//private Optional<List<TransactionResponse>> transList=new Optional<ArrayList<TransactionResponse>>(); 
+	private Optional<List<TransactionResponse>> transList=Optional.of(new ArrayList<TransactionResponse>());
 	private int totalRewardPoints;
     private int rewardpoints_3month;
- 	 private Map<Object,Integer> monthWiseRewardPoint;
+ 	 private Optional<Map<Object,Integer>> monthWiseRewardPoint;
 }
