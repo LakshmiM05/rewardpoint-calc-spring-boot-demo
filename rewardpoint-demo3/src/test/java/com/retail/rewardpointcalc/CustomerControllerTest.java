@@ -43,7 +43,7 @@ public class CustomerControllerTest {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 		CustomerRequest customer = new CustomerRequest("customerName", "address", "howtodoinjava@gmail.com",
-				1234567889);
+				"1234567889");
 		when(customerRepository.save(any(Customer.class))).thenReturn(new Customer());
 		ResponseEntity<CustomerResponse> responseEntity = customerController.createCustomer(customer);
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
@@ -54,7 +54,7 @@ public class CustomerControllerTest {
 	@Test
 	public void testGetCustomerDataById() {
 		CustomerRequest customer = new CustomerRequest("customerName", "address", "howtodoinjava@gmail.com",
-				1234567889);
+				"1234567889");
 		List<TransactionResponse> transList = new ArrayList<TransactionResponse>();
 
 		Optional<Customer> custresponse = Optional.of(new Customer(1, "customerName", "address",

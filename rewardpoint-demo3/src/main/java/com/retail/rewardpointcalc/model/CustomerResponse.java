@@ -23,17 +23,17 @@ public class CustomerResponse {
 
 	private int customerId;
 	private String customerName;
-	private String address ;
-	private String  emailID; 
-	private int  phone ;
-	private Date  created_at;
-	private String  created_by; 
-	private Date  updated_at; 
+	private String address;
+	private String emailID;
+	private int phone;
+	private Date created_at;
+	private String created_by;
+	private Date updated_at;
 	private String updated_by;
 	@Builder.Default
-	//private Optional<List<TransactionResponse>> transList=new Optional<ArrayList<TransactionResponse>>(); 
-	private Optional<List<TransactionResponse>> transList=Optional.of(new ArrayList<TransactionResponse>());
+
+	private Optional<List<TransactionResponse>> transList = Optional.of(new ArrayList<TransactionResponse>());
 	private int totalRewardPoints;
-    private int rewardpoints_3month;
- 	 private Optional<Map<Object,Integer>> monthWiseRewardPoint;
+	private int rewardpoints_3month;
+	private Optional<Map<Object, Integer>> monthWiseRewardPoint;
 }

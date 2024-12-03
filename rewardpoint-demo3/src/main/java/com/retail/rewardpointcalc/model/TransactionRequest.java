@@ -22,8 +22,8 @@ public class TransactionRequest {
 
 	private Date transDate;
 	@NotNull(message = "Enter a valid transaction amount")
-	@Min(value = 1, message = "Minimum Amt  1")
-	@Max(value = 10000, message = "Maximum working age 10000")
+	@Min(value = 10, message = "Minimum Tranasaction Amount Should be 10")
+	@Max(value = 10000, message = "Maximum Tranasaction Amount Should be 10000")
 	private int transAmt;
 	private int rewardpoints;
 	@NotNull(message = "Enter a valid Customer Id")

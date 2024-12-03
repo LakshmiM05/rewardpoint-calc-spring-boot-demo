@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,25 +27,25 @@ import lombok.Setter;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="customer_Id")
+	@Column(name = "customer_Id")
 	private int customerId;
-	@Column(name="customer_Name")
+	@Column(name = "customer_Name")
 	private String customerName;
-	@Column(name="address")
-	private String address ;
-	@Column(name="emailID")
-	private String  emailID; 
-	@Column(name="phone")
-	private int  phone ;
-	
+	@Column(name = "address")
+	private String address;
+	@Column(name = "emailID")
+	private String emailID;
+	@Column(name = "phone")
+	private int phone;
+
 	@OneToMany
 	@JoinColumn(name = "customer_id")
-	@Builder.Default	
+	@Builder.Default
 	private List<Transaction> transActionList = new ArrayList<Transaction>();
-	
-	private Date  created_at;
-	private String  created_by; 
-	private Date  updated_at; 
-	private String updated_by; 
+
+	private Date created_at;
+	private String created_by;
+	private Date updated_at;
+	private String updated_by;
 
 }

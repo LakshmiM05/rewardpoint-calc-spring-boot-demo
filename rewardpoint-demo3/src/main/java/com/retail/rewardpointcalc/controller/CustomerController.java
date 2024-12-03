@@ -49,17 +49,18 @@ public class CustomerController {
 	int rewardpointsum3month = 0;
 
 	@PostMapping("/customer")
+
 	public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody CustomerRequest customerRequest) {
 
 		Customer cutomerEntity = Customer.builder().address(customerRequest.getAddress())
 				.customerName(customerRequest.getCustomerName()).emailID(customerRequest.getEmailID())
-				.phone(customerRequest.getPhone()).created_at(new Date(System.currentTimeMillis()))
+				.phone(Integer.parseInt(customerRequest.getPhone())).created_at(new Date(System.currentTimeMillis()))
 				.created_by(customerRequest.getCustomerName()).build();
 
 		cutomerEntity = repository.save(cutomerEntity);
 		CustomerResponse customerResponse = new CustomerResponse();
 		customerResponse = CustomerResponseMapper.mapToCustomerResponse(cutomerEntity, customerResponse);
-		// custResponse = buildCustomerResponse(cutomerEntity);
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse);
 	}
 
@@ -82,13 +83,12 @@ public class CustomerController {
 		if (customer.isPresent()) {
 			customerResponse = CustomerResponseMapper.mapToCustomerResponse(customer.get(), customerResponse);
 			if (customerResponse.getTransList().isPresent()) {
-			customerResponse.getTransList().get().forEach(transaction -> {
-				totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
-			});
+				customerResponse.getTransList().get().forEach(transaction -> {
+					totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
+				});
 
-			customerResponse.setTotalRewardPoints(totalRewardPoints);
-			}
-			else {
+				customerResponse.setTotalRewardPoints(totalRewardPoints);
+			} else {
 				throw new Exception();
 			}
 
@@ -106,30 +106,30 @@ public class CustomerController {
 		CustomerResponse customerResponse = new CustomerResponse();
 		if (customer.isPresent()) {
 			customerResponse = CustomerResponseMapper.mapToCustomerResponse(customer.get(), customerResponse);
-			if(customerResponse.getTransList().isPresent()) {
+			if (customerResponse.getTransList().isPresent()) {
 
-			customerResponse.getTransList().get().forEach(transaction -> {
-				totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
-			});
+				customerResponse.getTransList().get().forEach(transaction -> {
+					totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
+				});
 
-			LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));
-		
+				LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));
 
-			List<TransactionResponse> threemonthList = customerResponse.getTransList().get().stream()
-					.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
-					.collect(Collectors.toList());
-			rewardpointsum3month = threemonthList.stream().mapToInt(trans -> trans.getRewardpoints()).sum();
-			customerResponse.setRewardpoints_3month(rewardpointsum3month);
-			
-			customerResponse.setTotalRewardPoints(totalRewardPoints);
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			Map<Object, List<TransactionResponse>> monthwiseMap = customerResponse.getTransList().get().stream().collect(
-					Collectors.groupingBy(transaction -> YearMonth.parse(transaction.getTransDate().toString(), dtf)));
-			customerResponse.setMonthWiseRewardPoint(iterateUsingIteratorAndEntrySet(monthwiseMap));
-			
+				List<TransactionResponse> threemonthList = customerResponse.getTransList().get().stream()
+						.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
+						.collect(Collectors.toList());
+				rewardpointsum3month = threemonthList.stream().mapToInt(trans -> trans.getRewardpoints()).sum();
+				customerResponse.setRewardpoints_3month(rewardpointsum3month);
+
+				customerResponse.setTotalRewardPoints(totalRewardPoints);
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				Map<Object, List<TransactionResponse>> monthwiseMap = customerResponse.getTransList().get().stream()
+						.collect(Collectors.groupingBy(
+								transaction -> YearMonth.parse(transaction.getTransDate().toString(), dtf)));
+				customerResponse.setMonthWiseRewardPoint(iterateUsingIteratorAndEntrySet(monthwiseMap));
+
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(customerResponse);
-		 }else {
+		} else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(customerResponse);
 		}
 
@@ -149,30 +149,30 @@ public class CustomerController {
 				CustomerResponse customerResponse = new CustomerResponse();
 
 				customerResponse = CustomerResponseMapper.mapToCustomerResponse(customer, customerResponse);
-				
-				if(	customerResponse.getTransList()!=null) {
 
-				customerResponse.getTransList().get().forEach(transaction -> {
-					totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
-				});
+				if (customerResponse.getTransList() != null) {
 
-				LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));
+					customerResponse.getTransList().get().forEach(transaction -> {
+						totalRewardPoints = calculateTotRewardPoints(transaction.getRewardpoints());
+					});
 
-				List<TransactionResponse> threemonthList = customerResponse.getTransList().get().stream()
-						.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
-						.collect(Collectors.toList());
+					LocalDate threeMonthsAgo = LocalDate.now().minus(Period.ofMonths(3));
 
-				rewardpointsum3month = threemonthList.stream().mapToInt(trans -> trans.getRewardpoints()).sum();
-				
-				customerResponse.setRewardpoints_3month(rewardpointsum3month);
-				customerResponse.setTotalRewardPoints(totalRewardPoints);
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				
-				Map<Object, List<TransactionResponse>> monthwiseMap = customerResponse.getTransList().get().stream()
-						.collect(Collectors.groupingBy(
-								transaction -> YearMonth.parse(transaction.getTransDate().toString(), dtf)));
-				customerResponse.setMonthWiseRewardPoint(iterateUsingIteratorAndEntrySet(monthwiseMap));
-				customerResponseList.add(customerResponse);
+					List<TransactionResponse> threemonthList = customerResponse.getTransList().get().stream()
+							.filter(transaction -> convert(transaction.getTransDate()).isAfter(threeMonthsAgo))
+							.collect(Collectors.toList());
+
+					rewardpointsum3month = threemonthList.stream().mapToInt(trans -> trans.getRewardpoints()).sum();
+
+					customerResponse.setRewardpoints_3month(rewardpointsum3month);
+					customerResponse.setTotalRewardPoints(totalRewardPoints);
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+					Map<Object, List<TransactionResponse>> monthwiseMap = customerResponse.getTransList().get().stream()
+							.collect(Collectors.groupingBy(
+									transaction -> YearMonth.parse(transaction.getTransDate().toString(), dtf)));
+					customerResponse.setMonthWiseRewardPoint(iterateUsingIteratorAndEntrySet(monthwiseMap));
+					customerResponseList.add(customerResponse);
 				}
 
 			});
@@ -188,14 +188,14 @@ public class CustomerController {
 	Optional<Map<Object, Integer>> iterateUsingIteratorAndEntrySet(Map<Object, List<TransactionResponse>> map) {
 		int sum = 0;
 		Map<Object, Integer> montwiseRewardPointMap = new HashMap<Object, Integer>();
-		if(map!=null && map.entrySet()!=null) {
-		Iterator<Map.Entry<Object, List<TransactionResponse>>> iterator = map.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<Object, List<TransactionResponse>> list = iterator.next();
-			sum = list.getValue().stream().mapToInt(trans -> trans.getRewardpoints()).sum();
-			montwiseRewardPointMap.put(list.getKey(), sum);
-		}
-		return Optional.of(montwiseRewardPointMap);
+		if (map != null && map.entrySet() != null) {
+			Iterator<Map.Entry<Object, List<TransactionResponse>>> iterator = map.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<Object, List<TransactionResponse>> list = iterator.next();
+				sum = list.getValue().stream().mapToInt(trans -> trans.getRewardpoints()).sum();
+				montwiseRewardPointMap.put(list.getKey(), sum);
+			}
+			return Optional.of(montwiseRewardPointMap);
 		}
 		return null;
 	}

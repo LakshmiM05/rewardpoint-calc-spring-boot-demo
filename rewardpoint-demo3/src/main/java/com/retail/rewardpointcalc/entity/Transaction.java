@@ -16,7 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Setter
 @Getter
@@ -24,23 +23,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class Transaction {
-	
-	
-	@ManyToOne	
-	 @JoinColumn(name = "customer", referencedColumnName = "customer_Id")
+
+	@ManyToOne
+	@JoinColumn(name = "customer", referencedColumnName = "customer_Id")
 	private Customer customer;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="trans_Id")
+	@Column(name = "trans_Id")
 	private int transId;
-	@Column(name="trans_Amt")
+	@Column(name = "trans_Amt")
 	private int transAmt;
-	@Column(name="reward_Points")
+	@Column(name = "reward_Points")
 	private int rewardPoints;
-	@Column(name="trans_Date")
+	@Column(name = "trans_Date")
 	private Date transDate;
-	@Column(name="customer_Id")
+	@Column(name = "customer_Id")
 	private int customerId;
-	
-	
+
 }

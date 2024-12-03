@@ -17,8 +17,6 @@ public class CustomerResponseMapper {
 		customerResponse.setPhone(customer.getPhone());
 		customerResponse.setUpdated_at(customer.getUpdated_at());
 		customerResponse.setUpdated_by(customer.getUpdated_by());
-		
-		
 
 		customerResponse.setTransList(CustomerResponseMapper.mapToTransactionResList(customer.getTransActionList(),
 				customerResponse.getTransList().get()));
@@ -32,7 +30,7 @@ public class CustomerResponseMapper {
 		if (transactionList != null) {
 			transactionList.stream().forEach(transaction -> {
 				listTransResp.add(
-						
+
 						TransactionResponseMapper.mapToTransactionResponse(transaction, new TransactionResponse()));
 			});
 		}

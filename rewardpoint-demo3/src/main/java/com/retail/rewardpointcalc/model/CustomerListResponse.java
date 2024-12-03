@@ -20,5 +20,5 @@ import lombok.Setter;
 public class CustomerListResponse {
 	@Builder.Default
 	private List<CustomerResponse> customerResponseList = new ArrayList<CustomerResponse>();
- 
+
 }
