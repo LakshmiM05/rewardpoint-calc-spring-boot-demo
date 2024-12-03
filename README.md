@@ -1,8 +1,7 @@
 Technology : 
-	Spring-boot
- 
-	MySql
- 
+
+	Spring-boot 
+	MySql 
 	Java 17
 
 Rest endpoints
