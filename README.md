@@ -25,6 +25,15 @@ Input Json to test in postman
 4.Url To get the customerdetail with transaction List and rewardpoints(Monthly,3month,total) for all the customers
 http://localhost:8080/customer/allcustomers
 
+5.Url to create transaction detail 
+http://localhost:8080/transaction 
+request : 
+		
+  		{
+		"transAmt":200,				
+		"customerId":1	
+		}
+
 	
 
 Postman Collection : rewardpoint_cal_demo.postman_collection
