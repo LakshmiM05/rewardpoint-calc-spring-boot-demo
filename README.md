@@ -87,6 +87,7 @@ URL: http://localhost:8080/customer/{customerId}/rewardpointsum
 Method: GET
 To get the customer details with transaction List and total reward points, the sum of 3-month reward points, and  month-wise reward point report for the given customer ID
 
+
 {
     "customerId": 1,
     "customerName": "Customer1",
@@ -98,13 +99,13 @@ To get the customer details with transaction List and total reward points, the s
     "updated_at": null,
     "updated_by": null,
     "transList": [
-        {
-            "transId": 1,
-            "transDate": "2024-11-27",
-            "transAmt": 120,
-            "rewardpoints": 90,
-            "customerId": 1
-        },
+	{
+	"transId": 1,
+	"transDate": "2024-11-27",
+	"transAmt": 120,
+	"rewardpoints": 90,
+	 "customerId": 1
+	},
         {
             "transId": 2,
             "transDate": "2024-11-27",
