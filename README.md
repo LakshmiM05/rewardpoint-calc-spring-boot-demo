@@ -1,16 +1,22 @@
 
-Reward-point-calculator. This project calculates the reward points for a single and multiple customers based on the customer transaction.
+Reward-point-calculator. This project calculates the reward points for single and multiple customers based on the customer transaction.
 
 This project calculates the reward points for single and multiple customers based on the customer transaction amount.
-If the customer does the transaction is greater than 100$, then the reward point is 2 for each dollar the customer spent. The reward point is 1 for the transaction amount between the range 50-100$.
-There is no, reward point for a transaction less than 50$. Here, to calculate the total reward points , monthly summation of reward points, and 3-month reward point summation the DB is used. 
+
+If the customer does the transaction is greater than 100$, then the reward point is 2 for each dollar the customer spent. 
+The reward point is 1 for the transaction amount between the range 50-100$.
+There is no reward point for a transaction less than $50$. Here, the DB is used to store and calculate the total reward points, monthly summation of reward points, and 3-month reward point summation. 
 Here I used MySQL db.
+
 The tables to be created in MySQL DB are 
-   1.Customer 
-   2.Transaction
+   1. Customer 
+   2. Transaction
+      
 The relationship between the customer and the Transaction is One-To-many. Here Customer ID is used as a foreign key in the Transaction table.
-Whenever a new transaction is done, the reward point is calculated  and it is also stored in the db with the customer transaction data.
-Project-setup : 
+Whenever a new transaction is made, the reward point is calculated and stored in the database along  with the customer transaction data.
+
+Project-setup :
+
     Install the required software. (MySQL DB is used here).
     
     Clone/download  the project src code from Git Hub.
@@ -19,6 +25,7 @@ Project-setup :
     
     Run  the CLEAN and Install maven commands.
 DB setup : 
+
 To store the 3-month customer transaction data, Here I used MYSQL DB.
 By default, it should create the db and tables in MYSQL.In case the schema and tables are not created run the following MySQL commands to create schema and Tables.
 
