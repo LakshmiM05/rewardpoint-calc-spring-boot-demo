@@ -261,7 +261,7 @@ request :
         }
 
 
-Postman Collection: rewardpoint_cal_demo.postman_collection
+Postman Collection: rewardpoint_cal_demo.postman_collection.
 Import this collection file in Postman and test the endpoints
 
 
