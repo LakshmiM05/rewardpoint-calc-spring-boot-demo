@@ -274,6 +274,8 @@ request :
 Postman Collection: rewardpoint_cal_demo.postman_collection.
 Import this collection file in Postman and test the endpoints
 
+rewardpoint-demo3/helping-docs : Contins the post-man collection and MySQL DB scripts
+
 
 
 
