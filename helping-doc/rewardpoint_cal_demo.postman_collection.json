@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "aedeac7e-796c-4273-bfed-26b3f03cf13f",
+		"name": "rewardpoint_cal_demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "811998",
+		"_collection_link": "https://orange-star-107575.postman.co/workspace/Test~2ca7225d-84b2-4e5b-9439-3b83fc6e8373/collection/811998-aedeac7e-796c-4273-bfed-26b3f03cf13f?action=share&source=collection_link&creator=811998"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/users/me",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8081/login",
+							"type": "string"
+						},
+						{
+							"key": "authRequestParams",
+							"value": [
+								{
+									"key": "code",
+									"value": "CDO8sh",
+									"enabled": false,
+									"send_as": "request_url"
+								}
+							],
+							"type": "any"
+						},
+						{
+							"key": "tokenRequestParams",
+							"value": [
+								{
+									"key": "code",
+									"value": "CDO8sh",
+									"enabled": false,
+									"send_as": "request_body"
+								}
+							],
+							"type": "any"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "read_profile_info",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientapp",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Test",
+							"type": "string"
+						},
+						{
+							"key": "refreshTokenUrl",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/users/createuser",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\":\"test\",\r\n\"lastName\":\"test\",\r\n\"password\":\"testDSFSADF\",\r\n\"email\":\"EQREEQ@co.in\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/users/createuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users",
+						"createuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/users-ws/users/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"EQREEQ@co.in\",\r\n    \"password\":\"testDSFSADF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/users-ws/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Createcustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"customerName\":\"Customer1\",\r\n\t\t\"address\" :\"Address1\",\r\n\t\t\"emailID\":\"email@gmail.com\",\r\n\t\t\"phone\":123456789\r\n\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"transAmt\":120,\t\t\t\t\r\n\t\t\"customerId\":1\t\r\n\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getcustomer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTransList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRewardpointsum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/1/rewardpointsum",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"1",
+						"rewardpointsum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCustomers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/allcustomers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"allcustomers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
