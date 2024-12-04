@@ -21,9 +21,7 @@ public class RewardPointCalcService {
 
 		if (transAmt >= maxLimit) {
 			// Calculate reward point for amt lesser than 100
-			// if(transAmt >=minLimit && transAmt <=maxLimit) {
 			rewardPointBelowMax = calculateRewardPoint(50, 1);
-			// }
 			// Calculate reward point for amt greater than 100
 			rewardPointAboveMax = calculateRewardPoint(transAmt - 100, 2);
 			rewardPoint = rewardPointBelowMax + rewardPointAboveMax;
