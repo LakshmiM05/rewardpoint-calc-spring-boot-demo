@@ -24,6 +24,7 @@ Project-setup :
     Import the maven project into Eclipse
     
     Run  the CLEAN and Install maven commands.
+    
 DB setup : 
 
 To store the 3-month customer transaction data, Here I used MYSQL DB.
