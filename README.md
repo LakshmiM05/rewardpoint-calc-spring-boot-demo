@@ -58,3 +58,85 @@ CREATE TABLE `Transaction` (
 
 Run the RewardpointDemo3Application.java to start the spring-boot-application 
 
+Technology Used : 
+
+- Spring Boot  
+- MySQL  
+- Java 17  
+- Maven  
+- JUnit
+
+  
+URL:  http://localhost:8080/customer
+Method : post
+To create Customer data and store it in MySQL DB
+Input JSON to test in Postman
+
+		{
+		"customerName":"Customer1",
+		"address" :"Address1",
+		"emailID":"email@gmail1.com",
+		"phone":134567928
+		}
+
+Url: http://localhost:8080/customer/{customerId}/transactions
+Method: GET
+To get the customer with a transaction List for the given customer ID
+
+URL: http://localhost:8080/customer/{customerId}/rewardpointsum
+Method: GET
+To get the customer details with transaction List and total reward points, the sum of 3-month reward points, and  month-wise reward point report for the given customer ID
+
+{
+    "customerId": 1,
+    "customerName": "Customer1",
+    "address": "Address1",
+    "emailID": "email@gmail.com",
+    "phone": 123456789,
+    "created_at": "2024-11-27",
+    "created_by": "Customer1",
+    "updated_at": null,
+    "updated_by": null,
+    "transList": [
+        {
+            "transId": 1,
+            "transDate": "2024-11-27",
+            "transAmt": 120,
+            "rewardpoints": 90,
+            "customerId": 1
+        },
+        {
+            "transId": 2,
+            "transDate": "2024-11-27",
+            "transAmt": 150,
+            "rewardpoints": 150,
+            "customerId": 1
+        },
+        {
+            "transId": 3,
+            "transDate": "2024-06-27",
+            "transAmt": 120,
+            "rewardpoints": 90,
+            "customerId": 1
+        },
+        {
+            "transId": 52,
+            "transDate": "2024-11-28",
+            "transAmt": 200,
+            "rewardpoints": 250,
+            "customerId": 1
+        }
+    ],
+    "totalRewardPoints": 580,
+    "rewardpoints_3month": 490,
+    "monthWiseRewardPoint": {
+        "2024-06": 90,
+        "2024-11": 490
+    }
+}
+
+
+  
+  
+ 
+
