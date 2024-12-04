@@ -68,8 +68,11 @@ Technology Used :
 
   
 URL:  http://localhost:8080/customer
-Method : post
+
+Method: POST
+
 To create Customer data and store it in MySQL DB
+
 Input JSON to test in Postman
 
 		{
@@ -80,11 +83,15 @@ Input JSON to test in Postman
 		}
 
 Url: http://localhost:8080/customer/{customerId}/transactions
+
 Method: GET
+
 To get the customer with a transaction List for the given customer ID
 
 URL: http://localhost:8080/customer/{customerId}/rewardpointsum
+
 Method: GET
+
 To get the customer details with transaction List and total reward points, the sum of 3-month reward points, and  month-wise reward point report for the given customer ID
 
 
