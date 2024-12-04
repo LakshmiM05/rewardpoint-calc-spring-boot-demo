@@ -142,6 +142,7 @@ To get the customer details with transaction List and reward points(Monthly,3mon
 
 Method : GET
 
+
 Customer Id :1
  [
     {
@@ -259,6 +260,9 @@ request :
         "customerId":1  
         }
 
+
+Postman Collection: rewardpoint_cal_demo.postman_collection
+Import this collection file in Postman and test the endpoints
 
 
 
