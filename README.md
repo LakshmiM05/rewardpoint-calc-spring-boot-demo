@@ -250,7 +250,9 @@ Customer Id :1
 ]
 
 URL: http://localhost:8080/transaction 
+
 To create transaction
+
 Method: POST method
 
 request : 
