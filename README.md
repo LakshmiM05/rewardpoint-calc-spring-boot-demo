@@ -136,6 +136,131 @@ To get the customer details with transaction List and total reward points, the s
     }
 }
 
+Url: http://localhost:8080/customer/allcustomers
+
+To get the customer details with transaction List and reward points(Monthly,3month, total) for all the customers
+
+Method : GET
+
+Customer Id :1
+ [
+    {
+        "customerId": 1,
+        "customerName": "Customer1",
+        "address": "Address1",
+        "emailID": "email@gmail.com",
+        "phone": 123456789,
+        "created_at": "2024-11-27",
+        "created_by": "Customer1",
+        "updated_at": null,
+        "updated_by": null,
+        "transList": [
+            {
+                "transId": 1,
+                "transDate": "2024-11-27",
+                "transAmt": 120,
+                "rewardpoints": 90,
+                "customerId": 1
+            },
+            {
+                "transId": 2,
+                "transDate": "2024-11-27",
+                "transAmt": 150,
+                "rewardpoints": 150,
+                "customerId": 1
+            },
+            {
+                "transId": 3,
+                "transDate": "2024-06-27",
+                "transAmt": 120,
+                "rewardpoints": 90,
+                "customerId": 1
+            },
+            {
+                "transId": 52,
+                "transDate": "2024-11-28",
+                "transAmt": 200,
+                "rewardpoints": 250,
+                "customerId": 1
+            }
+        ],
+        "totalRewardPoints": 580,
+        "rewardpoints_3month": 490,
+        "monthWiseRewardPoint": {
+            "2024-06": 90,
+            "2024-11": 490
+        }
+    },
+    {
+        "customerId": 2,
+        "customerName": "Customer2",
+        "address": "Address2",
+        "emailID": "email2@gmail.com",
+        "phone": 234567891,
+        "created_at": "2024-11-27",
+        "created_by": "Customer2",
+        "updated_at": null,
+        "updated_by": null,
+        "transList": [
+            {
+                "transId": 4,
+                "transDate": "2024-10-27",
+                "transAmt": 130,
+                "rewardpoints": 110,
+                "customerId": 2
+            }
+        ],
+        "totalRewardPoints": 110,
+        "rewardpoints_3month": 110,
+        "monthWiseRewardPoint": {
+            "2024-10": 110
+        }
+    },
+    {
+        "customerId": 52,
+        "customerName": "Customer3",
+        "address": "Address3",
+        "emailID": "email3@gmail.com",
+        "phone": 134567892,
+        "created_at": "2024-11-27",
+        "created_by": "Customer3",
+        "updated_at": null,
+        "updated_by": null,
+        "transList": [],
+        "totalRewardPoints": 0,
+        "rewardpoints_3month": 0,
+        "monthWiseRewardPoint": {}
+    },
+    {
+        "customerId": 102,
+        "customerName": "Customer4",
+        "address": "Address4",
+        "emailID": "email4@gmail.com",
+        "phone": 134567928,
+        "created_at": "2024-11-28",
+        "created_by": "Customer4",
+        "updated_at": null,
+        "updated_by": null,
+        "transList": [],
+        "totalRewardPoints": 0,
+        "rewardpoints_3month": 0,
+        "monthWiseRewardPoint": {}
+    }
+]
+
+URL: http://localhost:8080/transaction 
+To create transaction
+Method: POST method
+request : 
+	{
+        "transAmt":200,             
+        "customerId":1  
+        }
+
+
+
+
+
 
   
   
