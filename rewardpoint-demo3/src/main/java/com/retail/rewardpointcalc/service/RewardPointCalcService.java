@@ -18,7 +18,7 @@ public class RewardPointCalcService {
 		Integer rewardPointAboveMax = 0;
 		Integer minLimit = 50;
 		Integer maxLimit = 100;
-
+		if(transAmt!=null) {
 		if (transAmt >= maxLimit) {
 			// Calculate reward point for amt lesser than 100
 			rewardPointBelowMax = calculateRewardPoint(50, 1);
@@ -28,7 +28,7 @@ public class RewardPointCalcService {
 		} else if (transAmt > minLimit) {
 			rewardPoint = calculateRewardPoint(transAmt - minLimit, 1);
 		}
-
+		}
 		return rewardPoint;
 	}
 
@@ -45,6 +45,7 @@ public class RewardPointCalcService {
 		rewardPointResponse.setMonthlyTotalRewardPoint(getCustomerRewardPoint(rewardPointRequest.getTransActionAmt()));
 
 		List<Integer> rewardPointList = new ArrayList<Integer>();
+		if(!rewardPointRequest.getTransActionAmtList().isEmpty()) {
 
 		rewardPointRequest.getTransActionAmtList().forEach(transAmtValue -> {
 			int rewardpointvalue = getCustomerRewardPoint(transAmtValue);
@@ -54,6 +55,7 @@ public class RewardPointCalcService {
 
 		Integer sum = rewardPointList.stream().mapToInt(Integer::intValue).sum();
 		rewardPointResponse.setMonthlyTotalRewardPoint(sum);
+		}
 		return rewardPointResponse;
 
 	}

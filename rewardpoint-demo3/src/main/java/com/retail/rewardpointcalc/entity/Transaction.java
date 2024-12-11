@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Builder
 public class Transaction {
 
@@ -39,5 +39,9 @@ public class Transaction {
 	private Date transDate;
 	@Column(name = "customer_Id")
 	private int customerId;
+	
+	public Transaction() {
+		
+	}
 
 }
