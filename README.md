@@ -76,12 +76,19 @@ To create Customer data and store it in MySQL DB
 
 Input JSON to test in Postman
 
+
+
+
 		{
 		"customerName":"Customer1",
 		"address" :"Address1",
 		"emailID":"email@gmail1.com",
 		"phone":134567928
 		}
+
+
+
+  
 
 Url: http://localhost:8080/customer/{customerId}/transactions
 
