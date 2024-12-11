@@ -96,6 +96,9 @@ Method: GET
 To get the customer details with transaction List and total reward points, the sum of 3-month reward points, and  month-wise reward point report for the given customer ID
 
 
+
+
+
 {
     "customerId": 1,
     "customerName": "Customer1",
@@ -150,7 +153,7 @@ To get the customer details with transaction List and reward points(Monthly,3mon
 
 Method : GET
 
-
+```
 Customer Id :1
  [
     {
@@ -256,6 +259,8 @@ Customer Id :1
         "monthWiseRewardPoint": {}
     }
 ]
+```
+
 
 URL: http://localhost:8080/transaction 
 
@@ -265,10 +270,15 @@ Method: POST method
 
 request : 
 
+
+
+
 	{
         "transAmt":200,             
         "customerId":1  
         }
+
+
 
 
 Postman Collection: rewardpoint_cal_demo.postman_collection.
