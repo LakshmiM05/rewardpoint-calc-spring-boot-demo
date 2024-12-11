@@ -104,8 +104,6 @@ To get the customer details with transaction List and total reward points, the s
 
 
 
-
-
 {
     "customerId": 1,
     "customerName": "Customer1",
@@ -153,6 +151,9 @@ To get the customer details with transaction List and total reward points, the s
         "2024-11": 490
     }
 }
+
+
+
 
 Url: http://localhost:8080/customer/allcustomers
 
