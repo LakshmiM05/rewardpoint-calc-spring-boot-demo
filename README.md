@@ -102,7 +102,7 @@ Method: GET
 
 To get the customer details with transaction List and total reward points, the sum of 3-month reward points, and  month-wise reward point report for the given customer ID
 
-
+```
 
 {
     "customerId": 1,
@@ -151,7 +151,7 @@ To get the customer details with transaction List and total reward points, the s
         "2024-11": 490
     }
 }
-
+```
 
 
 
