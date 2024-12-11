@@ -58,8 +58,7 @@ public class TransactionControllerTest {
 	        ResponseEntity<TransactionResponse> responseEntity = transactionController.createTransaction(transreq);	        
 	        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
 	        assertThat( responseEntity.getBody().equals(TransactionResponse.class));
-	        //System.out.println(responseEntity.getHeaders().getLocation().getPath());
-	        //assertThat(responseEntity.getHeaders().getLocation().getPath()).isEqualTo("/0");
+	        
 	    }
 
 }

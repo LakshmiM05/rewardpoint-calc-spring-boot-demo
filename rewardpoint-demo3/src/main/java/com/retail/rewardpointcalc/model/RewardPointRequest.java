@@ -11,10 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RewardPointRequest {
-	
+
 	private Long customerId;
 	private String customerName;
 	private int transActionAmt;
-	private List<Integer> transActionAmtList=new ArrayList<Integer>();
+	private List<Integer> transActionAmtList = new ArrayList<Integer>();
 
 }

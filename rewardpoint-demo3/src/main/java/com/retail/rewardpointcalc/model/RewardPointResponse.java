@@ -16,4 +16,4 @@ public class RewardPointResponse {
 	private String mobileNumber;
 	private List<Transaction> listOfTransaction;
 	private int monthlyTotalRewardPoint;
-	}
+}

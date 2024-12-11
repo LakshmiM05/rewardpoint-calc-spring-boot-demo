@@ -28,6 +28,7 @@ public class RewardPointCalcController {
 	public String findRewardPointById(@PathVariable Long customerId) {
 		return null;
 	}
+	
 
 	@PostMapping("/rewardpoint")
 	public RewardPointResponse findRewardPoint(@RequestBody RewardPointRequest rewardPointRequest) {
